@@ -12,22 +12,19 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
-      console.log("Effect")
+    const identifire = setTimeout(() => {
+      console.log("Effect");
       setFormIsValid(
         enteredPassword.trim().length > 6 && enteredEmail.includes("@")
       );
     }, 500);
-    return ()=>{
-      clearTimeout('timeUp')
-    }
-  });
+    return () => {
+      clearTimeout(identifire);
+    };
+  }, [enteredEmail, enteredPassword]);
+
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-
-    setFormIsValid(
-      event.target.value.includes("@") && enteredPassword.trim().length > 6
-    );
   };
 
   const passwordChangeHandler = (event) => {
@@ -94,6 +91,9 @@ const Login = (props) => {
           </Button>
         </div>
       </form>
+      <div className="2">
+        <h2>{`Email: ${enteredEmail} Collage: ${enteredCollege}`}</h2>
+      </div>
     </Card>
   );
 };
